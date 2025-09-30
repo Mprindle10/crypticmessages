@@ -1,7 +1,7 @@
 # Netlify configuration for The Riddle Room
 [build]
-  # Build command - build both static pages and React app
-  command = "cp *.html public/ 2>/dev/null || true; cd frontend && npm install && npm run build && cp -r build/* ../public/"
+  # Build command using custom build script
+  command = "./build.sh"
   
   # Directory to publish
   publish = "public"
