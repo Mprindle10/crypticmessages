@@ -1,0 +1,45 @@
+# Ignore Python files and dependencies
+*.py
+__pycache__/
+.venv/
+requirements.txt
+.env
+.env.*
+
+# Ignore database files
+*.sql
+*.db
+
+# Ignore development files
+*.log
+.git/
+.vscode/
+README.md
+
+# Ignore backend services
+services/
+scheduler_*.py
+email_service.py
+models.py
+database.py
+
+# Ignore documentation
+*.md
+DBEAVER_*
+NGROK_*
+VIDEO_*
+WELCOME_*
+YOUTUBE_*
+LAUNCH_*
+SOFT_*
+WEEK_*
+BETA_*
+
+# Keep only HTML, CSS, JS for static site
+!*.html
+!*.css
+!*.js
+!public/
+!build.sh
+!netlify.toml
+!_redirects
