@@ -1,0 +1,315 @@
+/* YouTube Short #1 Animation Styles for Cipher Academy */
+
+/* Main Container */
+.youtube-short-preview {
+    width: 320px;
+    height: 568px;
+    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Cinzel', serif;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Ancient Scroll Background */
+.ancient-scroll {
+    width: 100%;
+    height: 100%;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="parchment" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><rect fill="%23F5DEB3" width="20" height="20"/><circle fill="%23DEB887" cx="5" cy="5" r="1" opacity="0.3"/></pattern></defs><rect fill="url(%23parchment)" width="100" height="100"/></svg>') repeat,
+        linear-gradient(45deg, #F5DEB3 0%, #DEB887 100%);
+    position: absolute;
+    animation: scrollUnroll 3s ease-out;
+}
+
+@keyframes scrollUnroll {
+    0% { 
+        transform: translateY(-100%) rotateX(90deg);
+        opacity: 0;
+    }
+    30% { 
+        transform: translateY(-50%) rotateX(45deg);
+        opacity: 0.7;
+    }
+    100% { 
+        transform: translateY(0) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+/* Hook Text Overlay */
+.genius-test-badge {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: #8B4513;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    animation: badgeGlow 2s infinite alternate;
+}
+
+@keyframes badgeGlow {
+    0% { 
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        transform: translateX(-50%) scale(1);
+    }
+    100% { 
+        box-shadow: 0 6px 25px rgba(255, 215, 0, 0.8);
+        transform: translateX(-50%) scale(1.02);
+    }
+}
+
+/* Cipher Text Display */
+.cipher-display {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80%;
+}
+
+.encrypted-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #8B4513;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    animation: textEnter 1.5s ease-out 1s both;
+    font-family: 'Courier New', monospace;
+}
+
+@keyframes textEnter {
+    0% { 
+        transform: translateY(50px) rotateX(90deg);
+        opacity: 0;
+        filter: blur(10px);
+    }
+    50% { 
+        transform: translateY(0) rotateX(45deg);
+        opacity: 0.7;
+        filter: blur(5px);
+    }
+    100% { 
+        transform: translateY(0) rotateX(0deg);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+/* Letter Shifting Animation */
+.letter-shift {
+    display: inline-block;
+    animation: letterTransform 0.8s ease-in-out;
+    animation-fill-mode: both;
+}
+
+.letter-shift:nth-child(1) { animation-delay: 0s; }
+.letter-shift:nth-child(2) { animation-delay: 0.1s; }
+.letter-shift:nth-child(3) { animation-delay: 0.2s; }
+.letter-shift:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes letterTransform {
+    0% { 
+        transform: translateY(-20px) rotateX(90deg) scale(0.8);
+        opacity: 0;
+        color: #8B4513;
+    }
+    50% { 
+        transform: translateY(0) rotateX(45deg) scale(1.1);
+        opacity: 0.7;
+        color: #FFD700;
+        filter: brightness(1.5);
+    }
+    100% { 
+        transform: translateY(0) rotateX(0deg) scale(1);
+        opacity: 1;
+        color: #8B4513;
+        filter: brightness(1);
+    }
+}
+
+/* Success Reveal Animation */
+.success-reveal {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 
+        0 0 10px #FFD700,
+        0 0 20px #FFD700,
+        0 0 30px #FFD700;
+    animation: successGlow 1.5s ease-out;
+    margin-top: 20px;
+}
+
+@keyframes successGlow {
+    0% { 
+        transform: scale(0.5);
+        opacity: 0;
+        filter: blur(20px);
+    }
+    30% { 
+        transform: scale(1.2);
+        opacity: 0.8;
+        filter: blur(5px);
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+/* Particle Effects */
+.particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: particleFloat 3s infinite linear;
+}
+
+@keyframes particleFloat {
+    0% { 
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 1;
+        transform: translateY(90vh) scale(1);
+    }
+    90% { 
+        opacity: 1;
+        transform: translateY(10vh) scale(1);
+    }
+    100% { 
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Generate multiple particles with random positions */
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 1s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 2s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 2.5s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 3s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 3.5s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 4s; }
+
+/* Alphabet Wheel Animation */
+.alphabet-wheel {
+    position: absolute;
+    bottom: 150px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border: 3px solid #8B4513;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 222, 179, 0.9);
+    animation: wheelRotate 4s linear infinite;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #8B4513;
+}
+
+@keyframes wheelRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Call to Action Button */
+.cta-button {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(30, 60, 114, 0.4);
+    animation: buttonPulse 2s infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+@keyframes buttonPulse {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 4px 15px rgba(30, 60, 114, 0.4);
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 6px 20px rgba(30, 60, 114, 0.6);
+    }
+}
+
+.cta-button:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 25px rgba(30, 60, 114, 0.8);
+}
+
+/* Challenge Hint Text */
+.challenge-hint {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: #8B4513;
+    text-align: center;
+    background: rgba(245, 222, 179, 0.8);
+    padding: 8px 15px;
+    border-radius: 15px;
+    animation: hintFade 3s ease-in-out infinite;
+}
+
+@keyframes hintFade {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .youtube-short-preview {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    .encrypted-text {
+        font-size: 2rem;
+        letter-spacing: 6px;
+    }
+    
+    .genius-test-badge {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}

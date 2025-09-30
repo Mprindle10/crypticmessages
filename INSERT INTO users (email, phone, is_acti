@@ -1,0 +1,5 @@
+INSERT INTO users (email, phone, is_active, is_admin)
+VALUES ('admin@crypticmessages.com', '1234567890', true, true)
+RETURNING id;INSERT INTO users (email, phone, is_active, is_admin)
+VALUES ('admin@crypticmessages.com', '1234567890', true, true)
+RETURNING id;

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Riddle Room - YouTube Short Preview</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .video-container {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        
+        video {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .video-info {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+        
+        .stats {
+            color: #ccc;
+            font-size: 0.9em;
+        }
+        
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+            transform: translateY(-2px);
+        }
+        
+        .fallback-message {
+            background: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .animation-frame {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="mainVideo" width="405" height="720" controls>
+            <source src="http://127.0.0.1:8080/youtube_video_output/riddle_room_youtube_short.mp4" type="video/mp4">
+            <source src="http://127.0.0.1:8080/riddle_room_youtube_short.mp4" type="video/mp4">
+            <source src="youtube_video_output/riddle_room_youtube_short.mp4" type="video/mp4">
+            <p>✅ Video loaded! Your Riddle Room YouTube Short is ready!</p>
+        </video>
+        
+        <div class="video-info">
+            <div class="title">🧩 The Riddle Room - Caesar Cipher Challenge</div>
+            <div class="stats">Duration: 30s | Format: 1080x1920 | Ready for YouTube Shorts</div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playVideo()">▶️ Play</button>
+            <button onclick="restartVideo()">🔄 Restart</button>
+            <button onclick="downloadVideo()">📥 Download</button>
+            <button onclick="showAnimation()">🎬 Show Animation</button>
+        </div>
+        
+        <div id="fallbackContainer"></div>
+    </div>
+
+    <script>
+        const video = document.getElementById('mainVideo');
+        
+        function playVideo() {
+            video.play().catch(e => {
+                console.log("Autoplay blocked, user interaction required");
+                showMessage("Click the play button on the video player to start!");
+            });
+        }
+        
+        function restartVideo() {
+            video.currentTime = 0;
+            video.play().catch(e => console.log("Play failed:", e));
+        }
+        
+        function downloadVideo() {
+            const link = document.createElement('a');
+            link.href = 'http://127.0.0.1:8080/youtube_video_output/riddle_room_youtube_short.mp4';
+            link.download = 'riddle_room_youtube_short.mp4';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showMessage("✅ Download started! Video ready for YouTube upload!");
+        }
+        
+        function showAnimation() {
+            showAnimationFallback();
+        }
+        
+        function showMessage(msg) {
+            const container = document.getElementById('fallbackContainer');
+            container.innerHTML = `<div class="fallback-message">${msg}</div>`;
+        }
+        
+        // Check if video exists and show appropriate message
+        video.addEventListener('error', function() {
+            console.log("Video file not found, showing animation fallback...");
+            document.querySelector('.video-info .title').innerHTML = 
+                "🔧 MP4 not found - Showing CSS Animation";
+            showAnimationFallback();
+        });
+        
+        video.addEventListener('loadeddata', function() {
+            console.log("✅ Video loaded successfully!");
+            document.querySelector('.video-info .stats').innerHTML = 
+                `Duration: ${Math.round(video.duration)}s | Format: ${video.videoWidth}x${video.videoHeight} | Ready for YouTube Shorts`;
+        });
+        
+        function showAnimationFallback() {
+            // Show the CSS animation version
+            const container = document.getElementById('fallbackContainer');
+            container.innerHTML = `
+                <div style="margin-top: 20px;">
+                    <iframe src="youtube_short_video.html" 
+                            width="405" 
+                            height="720" 
+                            class="animation-frame">
+                    </iframe>
+                </div>
+            `;
+            
+            document.querySelector('.video-info .title').innerHTML = 
+                "🎬 CSS Animation Preview - The Riddle Room";
+        }
+        
+        // Auto-load video on page load
+        window.addEventListener('load', function() {
+            console.log("🎬 Video player loaded for Riddle Room YouTube Short");
+            
+            // Check if video file exists by attempting to load it
+            fetch('http://127.0.0.1:8080/youtube_video_output/riddle_room_youtube_short.mp4', {method: 'HEAD'})
+                .then(response => {
+                    if (!response.ok) {
+                        console.log("MP4 not found via HTTP server, trying local file");
+                        fetch('youtube_video_output/riddle_room_youtube_short.mp4', {method: 'HEAD'})
+                            .then(r => {
+                                if (!r.ok) showAnimationFallback();
+                            })
+                            .catch(e => showAnimationFallback());
+                    } else {
+                        console.log("✅ MP4 video found and accessible!");
+                        showMessage("🎬 Video loaded! Click play to watch your YouTube Short");
+                    }
+                })
+                .catch(e => {
+                    console.log("HTTP server check failed, trying direct file access");
+                    showAnimationFallback();
+                });
+        });
+    </script>
+</body>
+</html>

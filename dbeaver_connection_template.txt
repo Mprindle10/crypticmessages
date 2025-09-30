@@ -1,0 +1,27 @@
+DBeaver Connection Settings for Cipher Academy:
+
+Connection Name: Cipher Academy Database
+Connection Type: PostgreSQL
+Driver: PostgreSQL
+
+Main Tab:
+├── Server Host: localhost
+├── Port: 5432
+├── Database: theriddleroom
+├── Username: m
+├── Password: Prindle#$%10
+└── Save password: ✓
+
+Driver Properties:
+├── ssl: false
+├── loginTimeout: 30
+└── socketTimeout: 60
+
+JDBC URL Examples:
+1. jdbc:postgresql://localhost:5432/theriddleroom
+2. jdbc:postgresql://localhost:5432/theriddleroom?ssl=false
+3. jdbc:postgresql://127.0.0.1:5432/theriddleroom?ssl=false&loginTimeout=30
+
+Manual Driver Path:
+/home/m/crypticmessages/postgresql-42.7.1.jar
+/home/m/crypticmessages/postgresql-42.6.0.jar

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Riddle Room - Can You Solve This Ancient Code?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .video-container {
+            width: 1080px;
+            height: 1920px;
+            position: relative;
+            background: linear-gradient(135deg, #2C1810 0%, #8B4513 50%, #D2691E 100%);
+            overflow: hidden;
+            transform-origin: center;
+        }
+
+        /* Ancient Scroll Background */
+        .scroll-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(245, 222, 179, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(222, 184, 135, 0.1) 0%, transparent 50%),
+                linear-gradient(45deg, #F5DEB3 0%, #DEB887 100%);
+            opacity: 0;
+            animation: scrollUnroll 3s ease-out forwards;
+        }
+
+        @keyframes scrollUnroll {
+            0% { 
+                transform: translateY(-100%) rotateX(90deg);
+                opacity: 0;
+            }
+            50% { 
+                transform: translateY(-30%) rotateX(45deg);
+                opacity: 0.7;
+            }
+            100% { 
+                transform: translateY(0) rotateX(0deg);
+                opacity: 0.9;
+            }
+        }
+
+        /* Hook Badge - Genius Test */
+        .genius-badge {
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #2C1810;
+            padding: 25px 50px;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 
+                0 8px 30px rgba(255, 215, 0, 0.6),
+                inset 0 2px 10px rgba(255,255,255,0.3);
+            opacity: 0;
+            animation: badgeEntrance 2s ease-out 0.5s forwards;
+        }
+
+        @keyframes badgeEntrance {
+            0% { 
+                transform: translateX(-50%) scale(0.3) rotateZ(-10deg);
+                opacity: 0;
+            }
+            70% { 
+                transform: translateX(-50%) scale(1.1) rotateZ(2deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateX(-50%) scale(1) rotateZ(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Main Cipher Display */
+        .cipher-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+        }
+
+        .question-text {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            color: #F5DEB3;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: textSlideIn 1.5s ease-out 2.5s forwards;
+        }
+
+        @keyframes textSlideIn {
+            0% { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .encrypted-text {
+            font-family: 'Courier Prime', monospace;
+            font-size: 120px;
+            font-weight: 700;
+            color: #8B4513;
+            text-shadow: 
+                0 0 20px #FFD700,
+                4px 4px 8px rgba(0,0,0,0.5);
+            letter-spacing: 20px;
+            margin-bottom: 60px;
+            opacity: 0;
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100px) rotateX(90deg);
+        }
+
+        /* Letter entrance animations */
+        .letter:nth-child(1) { animation: letterReveal 0.8s ease-out 4s forwards; }
+        .letter:nth-child(2) { animation: letterReveal 0.8s ease-out 4.3s forwards; }
+        .letter:nth-child(3) { animation: letterReveal 0.8s ease-out 4.6s forwards; }
+        .letter:nth-child(4) { animation: letterReveal 0.8s ease-out 4.9s forwards; }
+        .letter:nth-child(5) { animation: letterReveal 0.8s ease-out 5.2s forwards; }
+
+        @keyframes letterReveal {
+            0% { 
+                opacity: 0;
+                transform: translateY(100px) rotateX(90deg) scale(0.5);
+            }
+            50% { 
+                opacity: 0.7;
+                transform: translateY(0) rotateX(45deg) scale(1.2);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg) scale(1);
+            }
+        }
+
+        /* Teaching Section */
+        .teaching-section {
+            position: absolute;
+            bottom: 600px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            animation: teachingEnter 1.5s ease-out 8s forwards;
+        }
+
+        @keyframes teachingEnter {
+            0% { 
+                opacity: 0;
+                transform: translateX(-50%) translateY(50px);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .shift-demo {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            color: #FFD700;
+            margin-bottom: 30px;
+        }
+
+        .alphabet-wheel {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .letter-pair {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 2px solid #FFD700;
+            font-family: 'Courier Prime', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: #F5DEB3;
+        }
+
+        /* Letter Transformation Section */
+        .transformation-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: transformationEnter 1s ease-out 15s forwards;
+        }
+
+        @keyframes transformationEnter {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .transform-pair {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+            font-family: 'Courier Prime', monospace;
+            font-size: 80px;
+            font-weight: 700;
+        }
+
+        .original-letter, .arrow, .decoded-letter {
+            opacity: 0;
+        }
+
+        .original-letter {
+            color: #8B4513;
+            text-shadow: 0 0 15px #FFD700;
+        }
+
+        .arrow {
+            margin: 0 40px;
+            color: #FFD700;
+            font-size: 60px;
+        }
+
+        .decoded-letter {
+            color: #228B22;
+            text-shadow: 0 0 20px #90EE90;
+        }
+
+        /* Transformation animations */
+        .transform-1 .original-letter { animation: letterAppear 0.5s ease-out 15.5s forwards; }
+        .transform-1 .arrow { animation: letterAppear 0.5s ease-out 16s forwards; }
+        .transform-1 .decoded-letter { animation: letterAppear 0.5s ease-out 16.5s forwards; }
+
+        .transform-2 .original-letter { animation: letterAppear 0.5s ease-out 17s forwards; }
+        .transform-2 .arrow { animation: letterAppear 0.5s ease-out 17.5s forwards; }
+        .transform-2 .decoded-letter { animation: letterAppear 0.5s ease-out 18s forwards; }
+
+        .transform-3 .original-letter { animation: letterAppear 0.5s ease-out 18.5s forwards; }
+        .transform-3 .arrow { animation: letterAppear 0.5s ease-out 19s forwards; }
+        .transform-3 .decoded-letter { animation: letterAppear 0.5s ease-out 19.5s forwards; }
+
+        .transform-4 .original-letter { animation: letterAppear 0.5s ease-out 20s forwards; }
+        .transform-4 .arrow { animation: letterAppear 0.5s ease-out 20.5s forwards; }
+        .transform-4 .decoded-letter { animation: letterAppear 0.5s ease-out 21s forwards; }
+
+        .transform-5 .original-letter { animation: letterAppear 0.5s ease-out 21.5s forwards; }
+        .transform-5 .arrow { animation: letterAppear 0.5s ease-out 22s forwards; }
+        .transform-5 .decoded-letter { animation: letterAppear 0.5s ease-out 22.5s forwards; }
+
+        @keyframes letterAppear {
+            0% { 
+                opacity: 0;
+                transform: scale(0.5) rotateZ(180deg);
+            }
+            70% { 
+                opacity: 1;
+                transform: scale(1.2) rotateZ(-10deg);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1) rotateZ(0deg);
+            }
+        }
+
+        /* Victory Section */
+        .victory-section {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 0;
+            animation: victoryEnter 2s ease-out 25s forwards;
+        }
+
+        @keyframes victoryEnter {
+            0% { 
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+            50% { 
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% { 
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .victory-text {
+            font-family: 'Cinzel', serif;
+            font-size: 100px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 
+                0 0 30px #FFD700,
+                0 0 60px #FFD700,
+                4px 4px 10px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { 
+                text-shadow: 
+                    0 0 30px #FFD700,
+                    0 0 60px #FFD700,
+                    4px 4px 10px rgba(0,0,0,0.5);
+            }
+            100% { 
+                text-shadow: 
+                    0 0 50px #FFD700,
+                    0 0 100px #FFD700,
+                    0 0 150px #FFD700,
+                    4px 4px 15px rgba(0,0,0,0.7);
+            }
+        }
+
+        /* Call to Action */
+        .cta-section {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            animation: ctaEnter 1.5s ease-out 28s forwards;
+        }
+
+        @keyframes ctaEnter {
+            0% { 
+                opacity: 0;
+                transform: translateX(-50%) translateY(100px);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .cta-text {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            color: #F5DEB3;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            padding: 25px 60px;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 600;
+            box-shadow: 0 8px 30px rgba(30, 60, 114, 0.6);
+            animation: buttonPulse 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 8px 30px rgba(30, 60, 114, 0.6);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 12px 40px rgba(30, 60, 114, 0.8);
+            }
+        }
+
+        .description-link {
+            font-family: 'Courier Prime', monospace;
+            font-size: 24px;
+            color: #DEB887;
+            margin-top: 20px;
+        }
+
+        /* Brand Section */
+        .brand-section {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            animation: brandEnter 1s ease-out 29s forwards;
+        }
+
+        @keyframes brandEnter {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .brand-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: #DEB887;
+            margin-top: 5px;
+        }
+
+        /* Particle Effects */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #FFD700;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 4s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% { 
+                opacity: 1;
+                transform: translateY(90vh) scale(1);
+            }
+            90% { 
+                opacity: 1;
+                transform: translateY(10vh) scale(1);
+            }
+            100% { 
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Generate particles */
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 1s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 2s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 2.5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 3s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 3.5s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 4s; }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Background -->
+        <div class="scroll-background"></div>
+        
+        <!-- Particle Effects -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Hook Section (0-3s) -->
+        <div class="genius-badge">🧠 GENIUS TEST</div>
+
+        <!-- Cipher Reveal (3-8s) -->
+        <div class="cipher-display">
+            <div class="question-text">Decode this ancient message:</div>
+            <div class="encrypted-text">
+                <span class="letter">K</span>
+                <span class="letter">H</span>
+                <span class="letter">O</span>
+                <span class="letter">O</span>
+                <span class="letter">R</span>
+            </div>
+        </div>
+
+        <!-- Teaching Section (8-15s) -->
+        <div class="teaching-section">
+            <div class="shift-demo">Each letter shifts by 3 positions</div>
+            <div class="alphabet-wheel">
+                <div class="letter-pair">A → D</div>
+                <div class="letter-pair">B → E</div>
+                <div class="letter-pair">C → F</div>
+            </div>
+        </div>
+
+        <!-- Transformation Section (15-25s) -->
+        <div class="transformation-container">
+            <div class="transform-pair transform-1">
+                <span class="original-letter">K</span>
+                <span class="arrow">→</span>
+                <span class="decoded-letter">H</span>
+            </div>
+            <div class="transform-pair transform-2">
+                <span class="original-letter">H</span>
+                <span class="arrow">→</span>
+                <span class="decoded-letter">E</span>
+            </div>
+            <div class="transform-pair transform-3">
+                <span class="original-letter">O</span>
+                <span class="arrow">→</span>
+                <span class="decoded-letter">L</span>
+            </div>
+            <div class="transform-pair transform-4">
+                <span class="original-letter">O</span>
+                <span class="arrow">→</span>
+                <span class="decoded-letter">L</span>
+            </div>
+            <div class="transform-pair transform-5">
+                <span class="original-letter">R</span>
+                <span class="arrow">→</span>
+                <span class="decoded-letter">O</span>
+            </div>
+        </div>
+
+        <!-- Victory Section (25-28s) -->
+        <div class="victory-section">
+            <div class="victory-text">✨ HELLO ✨</div>
+        </div>
+
+        <!-- Call to Action (28-30s) -->
+        <div class="cta-section">
+            <div class="cta-text">Get weekly puzzles</div>
+            <button class="cta-button">🧩 START SOLVING</button>
+            <div class="description-link">Link in description below</div>
+        </div>
+
+        <!-- Brand Section -->
+        <div class="brand-section">
+            <div class="brand-name">THE RIDDLE ROOM</div>
+            <div class="brand-subtitle">by Cipher Academy</div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-restart animation every 30 seconds for continuous playback
+        function restartAnimation() {
+            const container = document.querySelector('.video-container');
+            container.style.animation = 'none';
+            container.offsetHeight; // Trigger reflow
+            container.style.animation = null;
+            
+            // Restart all child animations
+            const animatedElements = document.querySelectorAll('[style*="animation"]');
+            animatedElements.forEach(el => {
+                const currentAnimation = el.style.animation;
+                el.style.animation = 'none';
+                el.offsetHeight; // Trigger reflow
+                el.style.animation = currentAnimation;
+            });
+        }
+
+        // Restart every 30 seconds
+        setInterval(restartAnimation, 30000);
+        
+        // Log animation progress for debugging
+        console.log('🎬 The Riddle Room - 30 Second YouTube Short Animation');
+        console.log('Timeline:');
+        console.log('0-3s: Scroll unroll and badge entrance');
+        console.log('3-8s: GENIUS TEST text and cipher reveal');
+        console.log('8-15s: Teaching moment about Caesar cipher');
+        console.log('15-25s: Step-by-step transformation K→H, H→E, O→L, R→O');
+        console.log('25-28s: Victory reveal "HELLO" with effects');
+        console.log('28-30s: Call to action "START SOLVING"');
+        
+        // Ensure 30-second duration is reported correctly
+        setTimeout(() => {
+            console.log('✅ Full 30-second animation cycle complete!');
+        }, 30000);
+    </script>
+</body>
+</html>
