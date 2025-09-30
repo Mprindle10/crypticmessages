@@ -1,0 +1,86 @@
+.patch-puzzle {
+  background: #18181b;
+  color: #e0e0e0;
+  border: 2px solid #ff00cc;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 500px;
+  box-shadow: 0 0 24px #ff00cc55, 0 0 8px #00fff7aa;
+  position: relative;
+  font-family: 'Share Tech Mono', 'Fira Mono', monospace;
+  overflow: hidden;
+}
+
+.glitch {
+  position: relative;
+  color: #fff;
+  text-shadow:
+    2px 0 #ff00cc,
+    -2px 0 #00fff7,
+    0 2px #ff00cc,
+    0 -2px #00fff7;
+  animation: glitch 1.2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 #ff00cc, -2px 0 #00fff7; }
+  20% { text-shadow: -2px 0 #ff00cc, 2px 0 #00fff7; }
+  40% { text-shadow: 2px 2px #ff00cc, -2px -2px #00fff7; }
+  60% { text-shadow: -2px 2px #ff00cc, 2px -2px #00fff7; }
+  80% { text-shadow: 0 0 #ff00cc, 0 0 #00fff7; }
+  100% { text-shadow: 2px 0 #ff00cc, -2px 0 #00fff7; }
+}
+
+.patch-voice {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  filter: blur(0.5px);
+}
+
+.glitch-input {
+  background: #222;
+  color: #ff00cc;
+  border: 1px solid #00fff7;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 80%;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  box-shadow: 0 0 8px #00fff7aa;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.glitch-input:focus {
+  border: 2px solid #ff00cc;
+}
+
+.glitch-btn {
+  background: linear-gradient(90deg, #ff00cc 0%, #00fff7 100%);
+  color: #18181b;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 8px #ff00cc88;
+  transition: background 0.2s;
+}
+
+.glitch-btn:hover {
+  background: linear-gradient(90deg, #00fff7 0%, #ff00cc 100%);
+}
+
+.patch-feedback {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ff00cc;
+  text-shadow: 1px 1px #00fff7;
+  animation: glitch 0.8s infinite linear alternate-reverse;
+}
