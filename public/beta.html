@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher Academy - Beta Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffd700, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .beta-badge {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .challenge-preview {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .challenge-preview h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .cipher-text {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            color: #fff;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .benefit {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .signup-form {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .testimonial {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .countdown {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .countdown-number {
+            font-size: 3rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="beta-badge">🔐 Exclusive Beta Access 🔐</div>
+            <h1>The Cipher Academy</h1>
+            <p>Master 5,000 Years of Secret Messages in 21 Months</p>
+        </div>
+        
+        <div class="card">
+            <h2>🏛️ From Caesar to Quantum: Your Cryptographic Journey</h2>
+            <p>Join an exclusive group of 50 beta testers experiencing the world's most comprehensive cryptographic education adventure. Learn the same techniques that secured Roman military communications, broke Nazi codes, and protect modern banking.</p>
+            
+            <div class="benefits">
+                <div class="benefit">
+                    <div class="benefit-icon">📚</div>
+                    <h3>University-Level</h3>
+                    <p>91 weeks of progressive challenges</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🧩</div>
+                    <h3>Interactive</h3>
+                    <p>Each solution unlocks the next</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Multi-Channel</h3>
+                    <p>SMS, email, and web delivery</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Structured</h3>
+                    <p>Ancient → Renaissance → Modern → Quantum</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🔍 Try Your First Challenge</h2>
+            <p>In 58 BCE, Julius Caesar needed secure communication with his generals. His solution changed cryptography forever:</p>
+            
+            <div class="challenge-preview">
+                <h3>CHALLENGE #1: Caesar's First Message</h3>
+                <div class="cipher-text">WKLV LV MXVW WKH EHJLQQLQJ</div>
+                <p><strong>Hint:</strong> Caesar shifted each letter by 3 positions. A→D, B→E, C→F...</p>
+                <p><em>Can you decode Caesar's message? Beta testers get the answer key Sunday! 🗝️</em></p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🌟 Exclusive Beta Benefits</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 10px 0; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                    ✅ <strong>FREE First Month</strong> - 12 challenges (normally $19.99)
+                </li>
+                <li style="margin: 10px 0; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                    ✅ <strong>Lifetime 50% Discount</strong> - $7/month if you continue
+                </li>
+                <li style="margin: 10px 0; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                    ✅ <strong>Direct Founder Access</strong> - Shape the future of cryptographic education
+                </li>
+                <li style="margin: 10px 0; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                    ✅ <strong>Founding Member Badge</strong> - Recognition in our hall of fame
+                </li>
+                <li style="margin: 10px 0; padding: 10px 0;">
+                    ✅ <strong>Beta Community</strong> - Exclusive Discord with fellow codebreakers
+                </li>
+            </ul>
+        </div>
+        
+        <div class="countdown">
+            <p>Beta Spots Remaining:</p>
+            <div class="countdown-number" id="spotsLeft">47</div>
+            <p><em>Limited to 50 founding members</em></p>
+        </div>
+        
+        <div class="signup-form">
+            <h2 style="color: #2a5298; margin-bottom: 20px;">🔐 Apply for Beta Access</h2>
+            <form id="betaSignup" action="/api/subscribe" method="POST">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Cryptography Experience</label>
+                    <select id="experience" name="experience">
+                        <option value="beginner">Complete Beginner</option>
+                        <option value="some">Some Knowledge (took a course, read books)</option>
+                        <option value="intermediate">Intermediate (work in cybersecurity)</option>
+                        <option value="advanced">Advanced (professional cryptographer)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="background">Background (optional)</label>
+                    <select id="background" name="background">
+                        <option value="">Select your field</option>
+                        <option value="cybersecurity">Cybersecurity Professional</option>
+                        <option value="student">Student (CS/Math/History)</option>
+                        <option value="educator">Educator/Professor</option>
+                        <option value="puzzles">Puzzle Enthusiast</option>
+                        <option value="history">History Buff</option>
+                        <option value="military">Military/Intelligence</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone (for SMS challenges)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" required style="width: auto; margin-right: 10px;">
+                        I agree to receive educational cryptographic challenges and feedback surveys *
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    🚀 Begin My Cryptographic Journey
+                </button>
+            </form>
+        </div>
+        
+        <div class="testimonial">
+            <p><em>"The progressive difficulty is perfect - I went from struggling with Caesar ciphers to confidently analyzing polyalphabetic substitutions. The historical context makes each challenge fascinating rather than just academic."</em></p>
+            <p><strong>- Dr. Sarah Chen, Cybersecurity Professor (Alpha Tester)</strong></p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; opacity: 0.8;">
+            <p>Questions? Email us at <strong>beta@cipheracademy.com</strong></p>
+            <p><em>Beta launches Sunday, September 29th • First challenge delivered 9 AM EST</em></p>
+        </div>
+    </div>
+    
+    <script>
+        // Simple form submission
+        document.getElementById('betaSignup').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                email: formData.get('email'),
+                plan: 'beta_trial',
+                source: 'beta_landing',
+                phone: formData.get('phone'),
+                experience: formData.get('experience'),
+                background: formData.get('background')
+            };
+            
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    // Redirect to success page
+                    window.location.href = '/beta/success';
+                } else {
+                    alert('Something went wrong. Please try again or email us directly.');
+                }
+            } catch (error) {
+                alert('Network error. Please check your connection and try again.');
+            }
+        });
+        
+        // Animate spots counter occasionally
+        setInterval(() => {
+            const spotsLeft = document.getElementById('spotsLeft');
+            const current = parseInt(spotsLeft.textContent);
+            if (current > 0 && Math.random() < 0.1) { // 10% chance every interval
+                spotsLeft.textContent = current - 1;
+            }
+        }, 30000); // Every 30 seconds
+    </script>
+</body>
+</html>

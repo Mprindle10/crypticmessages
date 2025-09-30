@@ -1,0 +1,13 @@
+# Netlify redirects file for The Riddle Room
+
+# Redirect root to beta page
+/    /beta    302
+
+# Handle React app routing
+/frontend/*    /frontend/index.html    200
+
+# API proxying (when backend is deployed)
+/api/*    https://your-backend-url.com/api/:splat    200
+
+# Fallback for any unmatched routes
+/*    /index.html    200
