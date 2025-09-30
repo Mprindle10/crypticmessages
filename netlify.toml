@@ -1,20 +1,17 @@
 # Netlify configuration for The Riddle Room - Static Site Only
 [build]
-  # Build command using custom build script
-  command = "./build.sh"
+  # Build command - will run our custom script
+  command = "npm run build"
   
   # Directory to publish
   publish = "public"
   
   # Base directory (root)
   base = "."
-  
-  # Ignore Python files - this is a static site deployment
-  ignore = "requirements.txt,main.py,*.py,__pycache__/,.venv/"
 
 [build.environment]
-  # Skip Python package installation
-  SKIP_PYTHON_INSTALL = "true"
+  # Node.js environment (no Python)
+  NODE_VERSION = "18"
 
 # Redirects for The Riddle Room
 [[redirects]]

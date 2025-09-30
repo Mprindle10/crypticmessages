@@ -1,0 +1,10 @@
+{
+  "name": "the-riddle-room-static",
+  "version": "1.0.0",
+  "description": "Static site for The Riddle Room cryptic message subscription service",
+  "scripts": {
+    "build": "./build.sh"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
